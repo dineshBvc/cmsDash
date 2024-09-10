@@ -1,0 +1,96 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+// PrimeNG
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+//  @import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/themes/mira/theme.css";
+
+.table-full {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.table-header {
+    height: fit-content;
+    padding: 0px 8px 0px 8px;
+}
+
+.table-body {
+    flex: 1;
+    overflow: auto;
+    padding: 0px 8px 0px 8px;
+    scroll-margin-top: 20px;
+    scrollbar-width: thin;
+    ::-webkit-scrollbar {
+        width: thin;
+    }
+}
+
+.table-footer {
+    height: fit-content;
+    padding: 0px 8px 0px 8px;
+    font-size: 0.8rem;
+    // border-top: 2px solid var(--ion-color-medium);
+    ion-select {
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    ion-button {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+}
+
+.row-header {
+    font-weight: 700;
+    border-bottom: 2px solid var(--ion-color-medium);
+    height: 100%;
+    align-items: center;
+}
+
+.row-data {
+    font-weight: 300;
+    font-size: 0.9rem;
+    font-family: "Inter", sans-serif;
+    border-bottom: 1px solid var(--ion-color-medium-tint);
+}
+
+.row-total {
+    border-top: 2px solid var(--ion-color-medium);
+    font-weight: 700;
+    font-size: 0.9rem;
+    font-family: "Inter", sans-serif;
+}
+
+.download-icon-button {
+    --background: var(--ion-color-primary) !important;
+    color: var(--ion-color-primary-contrast) !important;
+}

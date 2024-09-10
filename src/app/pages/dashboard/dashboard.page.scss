@@ -1,0 +1,78 @@
+.salesCard {
+  --ion-grid-columns: 6;
+  ion-col {
+    padding: 0px;
+  }
+  ion-card {
+    height: 5rem;
+    ion-icon {
+      margin: 1rem;
+      height: 3rem;
+      width: 3rem;
+    }
+    .saledata {
+      margin-right: 10px;
+      float: right;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    ion-label {
+      font-size: 1.2rem;
+      margin-top: 8px;
+      text-align: end;
+      text-wrap: wrap;
+      p {
+        padding-top: 3px;
+        font-size: 0.7rem;
+        text-align: end;
+        opacity: 0.8;
+        font-weight: 400;
+        color: var(--ion-text-color);
+        text-wrap: wrap;
+      }
+    }
+  }
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  text-align: center;
+  padding: 5px;
+  font-size: 0.9rem;
+  p {
+    margin: 0;
+    font-size: 0.7rem;
+  }
+}
+
+.table-machine {
+  font-size: 0.75rem;
+  height: calc(100vh - 550px);
+  overflow-y: auto;
+  p {
+    margin: 0px;
+    font-weight: 400;
+    font-size: 0.7rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .app-type {
+    font-size: 0.7rem;
+  }
+  .table-machine {
+    height: auto;
+    p {
+      margin: 0px;
+      font-weight: 400;
+      font-size: 0.7rem;
+    }
+  }
+}

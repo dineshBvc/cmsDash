@@ -1,0 +1,146 @@
+<ion-content>
+
+  <ion-row>
+    <ion-col size="12" class="machine">
+      <ion-card>
+        <ion-card-header>
+          <ion-item lines="none">
+            <ion-thumbnail slot="start">
+              <img src="/assets/images/VM.jpg" />
+            </ion-thumbnail>
+            <ion-label>
+              <ion-card-title> {{ machine?.number }}.{{machine?.name}}
+              </ion-card-title>
+
+              <div class="status">
+                <ion-badge [color]="machine?.status?.toLowerCase() == 'online' ? 'success' : 'warning'">
+                  {{machine?.status}}
+                </ion-badge>
+                @if (machine?.status?.toLowerCase() == 'offline') {
+                <span> Last seen : {{ machine?.updatedOn | date : 'MMM d, y, h:mm a'}} </span>
+                }
+              </div>
+
+              <p class="location" > {{machine?.location}} </p>
+            </ion-label>
+          </ion-item>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-grid class="salesCard">
+    <ion-row>
+      <ion-col sizeXl="1" sizeMd="1" sizeXs="3">
+        <ion-card color="danger">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <div class="saledata">
+            <ion-label> <span>₹</span> {{ sales.month.total }}
+              <p>
+                <span> ({{date | date : 'MMM-yy' }})</span>
+                TOTAL
+              </p>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col sizeXl="1" sizeMd="1" sizeXs="3">
+        <ion-card color="warning">
+          <ion-icon name="qr-code-outline"></ion-icon>
+          <div class="saledata">
+            <ion-label> <span>₹</span> {{ sales.month.upi }}
+              <p>UPI</p>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeXl="1" sizeMd="1" sizeXs="3">
+        <ion-card color="success">
+          <ion-icon name="wallet-outline"></ion-icon>
+          <div class="saledata">
+            <ion-label> <span>₹</span> {{ sales.month.account }}
+              <p>ACCOUNT</p>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeXl="1" sizeMd="1" sizeXs="3">
+        <ion-card color="tertiary">
+
+          <ion-icon name="cash-outline"></ion-icon>
+          <div class="saledata">
+            <ion-label> <span>₹</span> {{ sales.month.cash }}
+              <p>CASH</p>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeXl="1" sizeMd="1" sizeXs="3">
+        <ion-card color="primary">
+          <ion-icon name="card-outline"></ion-icon>
+          <div class="saledata">
+            <ion-label> <span>₹</span> {{ sales.month.card }}
+              <p>CARD</p>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeXl="1" sizeMd="1" sizeXs="3">
+        <ion-card color="secondary">
+          <ion-icon name="today-outline"></ion-icon>
+          <div class="saledata">
+            <ion-label> <span>₹</span> {{ sales.today.total }}
+              <p>TODAY</p>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-row class="saleschart">
+    <ion-col size="12" sizeLg="4">
+      <ion-card>
+        <ion-card-content>
+          @if (DailyChartInput != undefined) {
+          <apx-chart #DailyChart [series]="DailyChartInput.series" [chart]="DailyChartInput.chart"
+            [colors]="DailyChartInput.colors" [dataLabels]="DailyChartInput.dataLabels" [grid]="DailyChartInput.grid"
+            [legend]="DailyChartInput.legend" [plotOptions]="DailyChartInput.plotOptions"
+            [title]="DailyChartInput.title" [xaxis]="DailyChartInput.xaxis">
+          </apx-chart>
+          }
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col size="12" sizeLg="4">
+      <ion-card>
+        <ion-card-content>
+          @if (MonthlyChartInput != undefined) {
+          <apx-chart #monthlyChart [series]="MonthlyChartInput.series" [chart]="MonthlyChartInput.chart"
+            [colors]="MonthlyChartInput.colors" [dataLabels]="MonthlyChartInput.dataLabels"
+            [grid]="MonthlyChartInput.grid" [legend]="MonthlyChartInput.legend" [title]="MonthlyChartInput.title"
+            [xaxis]="MonthlyChartInput.xaxis">
+          </apx-chart>
+          }
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col size="12" sizeLg="4">
+      <ion-card>
+        <ion-card-content>
+          @if (ProductChart != undefined) {
+          <apx-chart [series]="ProductChart.series" [chart]="ProductChart.chart" [labels]="ProductChart.labels"
+            [title]="ProductChart.title" [legend]="ProductChart.legend" [responsive]="ProductChart.responsive">
+          </apx-chart>
+          }
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>

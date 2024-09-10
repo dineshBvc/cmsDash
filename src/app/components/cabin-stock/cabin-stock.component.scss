@@ -1,0 +1,100 @@
+.item-rows {
+    padding: 0px;
+    --ion-grid-width: 1200px;
+
+    ion-col {
+        padding: 0px;
+        ion-card {
+            ion-img {
+                height: 150px;
+                margin: 5px;
+            }
+
+            .bar {
+                margin: 10px;
+
+                ion-progress-bar {
+                    height: 10px;
+                }
+            }
+
+            ion-text {
+                display: block;
+                margin: 10px 10px 5px 5px;
+                text-align: center;
+                height: 40px;
+                overflow: hidden;
+                font-size: 0.8rem;
+            }
+
+            .item-container {
+                display: flex;
+                flex-direction: row;
+                height: 60px;
+                margin: 5px;
+                overflow: hidden;
+                color: var(--ion-text-color);
+
+                border-radius: 5px;
+
+                .item-number {
+                    min-width: 40px;
+                    text-align: center;
+                    align-items: center;
+                    font-size: 1.2rem;
+                    color: #ffffff;
+                    background-color: black;
+                    border: 1px solid black;
+                    display: flex;
+                    div {
+                        width: 100%;
+                    }
+                }
+
+                .item-name {
+                    flex-grow: 1;
+                    align-items: center;
+                    text-align: center;
+                    border: 1px solid black;
+                    height: 100%;
+                    vertical-align: middle;
+                    display: flex;
+                    div {
+                        width: 100%;
+                    }
+                }
+
+                .item-stock {
+                    min-width: 40px;
+                    text-align: center;
+                    align-items: center;
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    background-color: green;
+                    color: #ffffff;
+                    display: flex;
+                    .stock-c {
+                        width: 100%;
+                    }
+
+                    .barline {
+                        height: 2px;
+                        margin-left: 8px;
+                        margin-right: 8px;
+                        background-color: white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.normal {
+    background-color: transparent;
+    color: var(--ion-text-color);
+}
+
+.soldout {
+    background-color: red;
+    color: #ffffff !important;
+}

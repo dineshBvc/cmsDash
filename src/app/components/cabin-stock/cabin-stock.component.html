@@ -1,0 +1,31 @@
+@for (row of cabin; track $index) {
+<ion-grid [style]="'--ion-grid-columns: '+ row.items.length" class="item-rows">
+  <ion-row>
+    @for (item of row.items; track $index) {
+    <ion-col size="1">
+      <ion-card>
+        <ion-img [src]="item.imgPath"></ion-img>
+        <div class="item-container" [ngClass]="{'soldout' : item.soldOut}">
+          <div class="item-number">
+            <div>{{item.motorNumber}} </div>
+          </div>
+          <div class="item-name">
+            <div [hidden]="item.product.length == 0">
+              {{item.product}} - ₹{{ item.price }}
+            </div>
+
+          </div>
+          <div class="item-stock">
+            <div class="stock-c">
+              <div> {{item.stock}}</div>
+              <div class="barline"></div>
+              <div>{{ item.capacity }}</div>
+            </div>
+          </div>
+        </div>
+      </ion-card>
+    </ion-col>
+    }
+  </ion-row>
+</ion-grid>
+}

@@ -1,0 +1,143 @@
+<ion-content>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" sizeSm="10" sizeXl="8">
+
+      <div class="section-outer">
+        <div class="section-header"> Live Report </div>
+        <div class="section-body">
+
+          <ion-row class="ion-justify-content-center ion-align-items-center">
+            <ion-col size="12" sizeSm="auto">
+              <ion-item lines="none">
+                <div slot="start"> From </div>
+                <ion-datetime-button datetime="fromdate"></ion-datetime-button>
+              </ion-item>
+              <ion-modal [keepContentsMounted]="true">
+                <ng-template>
+                  <ion-datetime id="fromdate" [(ngModel)]="fromDate" [showDefaultButtons]="true"></ion-datetime>
+                </ng-template>
+              </ion-modal>
+            </ion-col>
+
+            <ion-col size="12" sizeSm="auto">
+              <ion-item lines="none">
+                <div slot="start"> To </div>
+                <ion-datetime-button datetime="todate"></ion-datetime-button>
+              </ion-item>
+              <ion-modal [keepContentsMounted]="true">
+                <ng-template>
+                  <ion-datetime id="todate" [(ngModel)]="toDate" [showDefaultButtons]="true"></ion-datetime>
+                </ng-template>
+              </ion-modal>
+            </ion-col>
+
+            <ion-col size="12" sizeSm="2">
+              <ion-button expand="block" (click)="RequestLiveReport()"> GET REPORT </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <div class="table-outline">
+
+            <div class="table-header" *ngIf="reportRequest.length > 0">
+              <ion-row class="row-header">
+                <ion-col sizeSm="4" class="ion-text-center"> From </ion-col>
+                <ion-col sizeSm="4" class="ion-text-center"> To </ion-col>
+                <ion-col sizeSm="4" class="ion-text-center"> Status </ion-col>
+              </ion-row>
+            </div>
+
+            <div class="table-body" style="margin-bottom: 16px;">
+              <ion-row class="ion-align-items-center" *ngFor="let row of reportRequest; let i = index;">
+                <ion-col sizeSm="4" class="ion-text-center"> {{row.from | date:'MMM dd, yyyy hh:mm a' }} </ion-col>
+                <ion-col sizeSm="4" class="ion-text-center"> {{row.to | date:'MMM dd, yyyy hh:mm a' }} </ion-col>
+                <ion-col sizeSm="4" class="ion-text-center">
+                  @if(row.sent)
+                  {
+                  @if(row.received){
+                  <span class="btn-download" (click)="DownloadLiveReport(row.id)"> Download </span>
+                  }
+                  @else {
+                  Preparing
+                  }
+                  }
+                  @else {
+                  Waiting
+                  }
+                </ion-col>
+              </ion-row>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="section-outer">
+        <div class="section-header"> Machine Logs </div>
+        <div class="section-body">
+
+          <ion-row class="ion-justify-content-center ion-align-items-center">
+            <ion-col size="12" sizeSm="auto">
+              <ion-item id="open-modal" lines="none">
+                <div slot="start"> Date </div>
+                <ion-label slot="end">{{logDate | date}}</ion-label>
+              </ion-item>
+
+              <ion-modal trigger="open-modal">
+                <ng-template>
+                  <ion-datetime presentation="date" [showDefaultTitle]="true" [showDefaultButtons]="true"
+                    [(ngModel)]="logDate" size="cover"></ion-datetime>
+                </ng-template>
+              </ion-modal>
+            </ion-col>
+
+            <ion-col size="12" sizeSm="2">
+              <ion-button expand="block" (click)="RequestLogFile()"> GET LOG </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <div class="table-outline">
+            <ion-row class="ion-justify-content-center ion-align-items-center">
+              <ion-col size="12" sizeSm="5">
+                <div class="table-header" *ngIf="logRequests.length > 0">
+                  <ion-row class="row-header">
+                    <ion-col sizeSm="6" class="ion-text-center"> Date </ion-col>
+                    <ion-col sizeSm="6" class="ion-text-center"> Status </ion-col>
+                  </ion-row>
+                </div>
+
+                <div class="table-body" style="margin-bottom: 16px;">
+                  <ion-row class="ion-align-items-center" *ngFor="let row of logRequests; let i = index;">
+                    <ion-col sizeSm="6" class="ion-text-center"> {{row.logDate | date:'MMM dd, yyyy' }} </ion-col>
+                    <ion-col sizeSm="6" class="ion-text-center">
+                      @if(row.sent)
+                      {
+                      @if(row.received){
+                      @if(row.success){
+                      <span class="btn-download" (click)="DownloadLogFile(row.id, row.logDate)"> Download </span>
+                      }
+                      @else {
+                      {{row.message}}
+                      }
+                      }
+                      @else {
+                      Preparing
+                      }
+                      }
+                      @else {
+                      Waiting
+                      }
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </ion-col>
+            </ion-row>
+          </div>
+
+        </div>
+      </div>
+
+
+    </ion-col>
+  </ion-row>
+</ion-content>

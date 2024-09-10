@@ -1,0 +1,117 @@
+<ion-content>
+
+  <ion-row class="ion-margin-top">
+    <ion-col size="12" class="ion-text-center">
+      <ion-text class="title"> Category </ion-text>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row class="ion-justify-content-center">
+
+    <ion-col sizeXs="12" sizeLg="5">
+      <ion-card>
+
+        <ion-card-header class="contentHeader">
+          <ion-card-title>Create New Category</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content class="contentHeight">
+          <form [formGroup]="newInputForm" enctype="multipart/form-data" (ngSubmit)="AddCategory()">
+            <ion-row>
+              <ion-col size="12">
+                <ion-input label="Name" type="text" label-placement="floating" fill="outline" placeholder="Enter Name"
+                  formControlName="name" [errorText]="getErrorText('name')"></ion-input>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row class="ion-margin-top">
+              <ion-col size="12">
+                <div class="cardCenter">
+                  <ion-card class="imageCard">
+                    <ion-img class="img-card" [src]="imagePreview" alt=""></ion-img>
+                    <ion-button (click)="eleImages.click()" class="ion-no-margin" expand="block">
+                      {{ categoryId.length > 0 ? 'Change Image' :
+                      eleImages?.files?.length ?? 0 > 0 ? 'Change Image' : 'Add Image' }}
+                    </ion-button>
+                  </ion-card>
+                </div>
+                <input type="file" #eleImages hidden="true" accept="image/*" (change)="onFileChange($event)" />
+
+                <ion-text class="ion-text-center" style="display: block; font-size: 0.75rem;" color="danger">
+                  {{getErrorText('productImage') }}
+                </ion-text>
+
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row>
+
+              @if(categoryId.length > 0){
+              <ion-col size="6">
+                <ion-button expand="block" (click)="Reset()">
+                  Cancel
+                </ion-button>
+              </ion-col>
+              <ion-col size="6">
+                <ion-button expand="block" type="submit">
+                  Update Category
+                </ion-button>
+              </ion-col>
+              } @else {
+              <ion-col>
+                <ion-button expand="block" type="submit">
+                  Add Category
+                </ion-button>
+              </ion-col>
+              }
+
+            </ion-row>
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col sizeXs="12" sizeLg="5" offsetLg="1">
+      <ion-card>
+
+        <ion-card-header class="contentHeader">
+          <ion-searchbar [debounce]="500" (ionInput)="findCategory($event)"></ion-searchbar>
+        </ion-card-header>
+
+        <ion-card-content class="contentHeight">
+          <ion-list lines="none">
+            @for (category of categories; track category.id) {
+            <ion-item>
+              <ion-thumbnail slot="start">
+                <img [src]="category.imgPath" />
+              </ion-thumbnail>
+              <ion-label>
+                {{category.name}}
+              </ion-label>
+
+              <ion-buttons slot="end">
+                <ion-button color="primary" fill="solid" (click)="GetCategory(category.id)">
+                  <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                </ion-button>
+
+                <ion-button color="danger" fill="solid" (click)="DeleteCategory(category.id)">
+                  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+
+            </ion-item>
+            }@empty {
+            <ion-item>
+              Category Not found
+            </ion-item>
+            }
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+  </ion-row>
+</ion-content>

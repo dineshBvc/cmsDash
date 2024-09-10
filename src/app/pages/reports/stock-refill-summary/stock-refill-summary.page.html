@@ -1,0 +1,125 @@
+<ion-content color="light">
+  <div class="table-full">
+
+
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12" sizeSm="2" class="ion-text-center">
+        <h1> Stock Refill Summary </h1>
+      </ion-col>
+
+      <ion-col size="12" sizeSm="2" class="ion-text-center">
+        <app-machinelist type="vm"></app-machinelist>
+      </ion-col>
+
+      <ion-col size="12" sizeSm="3" sizeXl="2" class="ion-text-center">
+        <ion-row class="ion-align-items-center">
+          <ion-col size="3" class="ion-text-end">
+            From
+          </ion-col>
+          <ion-col>
+            <ion-datetime-button datetime="fromdate"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime id="fromdate" [(ngModel)]="fromDate" [showDefaultButtons]="true"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col size="12" sizeSm="3" sizeXl="2" class="ion-text-center">
+        <ion-row class="ion-align-items-center">
+          <ion-col size="3" class="ion-text-end">
+            To
+          </ion-col>
+          <ion-col>
+            <ion-datetime-button datetime="todate"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime id="todate" [(ngModel)]="toDate" [showDefaultButtons]="true"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col size="12" sizeSm="2" class="ion-text-center ">
+        <ion-button expand="block" (click)="onShowClick()"> SHOW </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-row class="ion-justify-content-center ion-align-items-center" *ngIf="rawData.length > 0">
+      <ion-col size="12" sizeLg="10" sizeXl="8" class="ion-no-padding">
+        <ion-toolbar color="light">
+          <ion-searchbar (ionInput)="SearchData($event)"></ion-searchbar>
+          <ion-buttons slot="end">
+            <ion-button (click)="OnDownload()" class="download-icon-button">
+              <ion-icon slot="icon-only" name="download-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-col>
+    </ion-row> -->
+
+    <div class="table-header" *ngIf="rawData.length > 0">
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" sizeMd="10" sizeLg="8" class="ion-no-padding">
+          <ion-row class="row-header">
+
+            <ion-col size="6"> Product </ion-col>
+            <ion-col size="2" class="ion-text-center"> Price </ion-col>
+            <ion-col size="2" class="ion-text-center"> Filled </ion-col>
+            <ion-col size="2" class="ion-text-center"> Cleared </ion-col>
+
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+
+    </div>
+
+    <div class="table-body">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" sizeMd="10" sizeLg="8" class="ion-no-padding">
+
+          <div *ngFor="let slot of result; let i = index;">
+            <ion-row class="ion-align-items-center group-header">
+              <ion-col size="6"> Attempt - {{slot.attempt}} </ion-col>
+              <ion-col size="6" class="ion-text-end">
+                {{ slot.start | date:'MMM dd, yyyy' }} <br />
+                {{ slot.start | date:'hh:mm a' }} - {{ slot.end | date:'hh:mm a' }}
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="row-data" *ngFor="let row of slot.items; let ii = index;">
+              <ion-col size="6"> {{ row.productName }} </ion-col>
+              <ion-col size="2" class="ion-text-center"> {{ row.price }} </ion-col>
+              <ion-col size="2" class="ion-text-center"> {{ row.filled }} </ion-col>
+              <ion-col size="2" class="ion-text-center"> {{ row.cleared }} </ion-col>
+            </ion-row>
+
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="table-footer" *ngIf="rawData.length > 0">
+      <ion-row class="ion-justify-content-center  ion-margin-bottom">
+        <ion-col size="12" sizeMd="10" sizeLg="8" class="ion-no-padding">
+          <ion-row class="row-total">
+            <ion-col size="3" class="ion-text-center"> Records : {{ result.length }} </ion-col>
+            <ion-col size="5" class="ion-text-end ion-margin-top"> TOTAL </ion-col>
+            <ion-col size="2" class="ion-text-center ion-margin-top"> Rs. {{ GetTotalByKey('filled') }} </ion-col>
+            <ion-col size="2" class="ion-text-center ion-margin-top"> Rs. {{ GetTotalByKey('cleared') }} </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+
+
+
+
+  </div>
+</ion-content>

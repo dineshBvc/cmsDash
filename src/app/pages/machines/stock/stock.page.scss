@@ -1,0 +1,13 @@
+.scrollContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto !important;
+}
+
+.gridContainer {
+    min-width: 1200px;
+}
+
+ion-segment {
+    margin-right: 16px;
+}

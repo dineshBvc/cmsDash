@@ -1,0 +1,25 @@
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="home-outline"></ion-icon>
+      Home
+    </ion-tab-button>
+
+
+    <ion-tab-button tab="stock" *ngIf="stockVisible">
+      <ion-icon name="file-tray-stacked-outline"></ion-icon>
+      Stock
+    </ion-tab-button>
+
+
+    <ion-tab-button tab="live">
+      <ion-icon name="radio-outline"></ion-icon>
+      Live
+    </ion-tab-button>
+    <!-- <ion-tab-button tab="report">
+      <ion-icon name="book-outline"></ion-icon>
+      Report
+    </ion-tab-button> -->
+  </ion-tab-bar>
+</ion-tabs>

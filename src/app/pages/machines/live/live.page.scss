@@ -1,0 +1,25 @@
+.section-outer {
+    margin-top: 32px;
+    border: 2px solid var(--ion-color-primary);
+    border-radius: 5px;
+    min-height: 15vh;
+}
+
+.section-header {
+    background-color: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+    padding: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.btn-download {
+    color: var(--ion-color-primary);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.table-outline {
+    // border: 2px solid var(--ion-color-medium);
+    margin: 8px;
+}

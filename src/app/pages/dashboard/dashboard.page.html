@@ -1,0 +1,153 @@
+<ion-content>
+
+  <ion-grid class="salesCard">
+    <ion-row>
+      <ion-col sizeXl="1" sizeMd="1" sizeXs="3">
+        <ion-card color="danger">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <div class="saledata">
+            <ion-label> <span>₹</span> {{ sales.month.total }}
+              <p>
+                <span> ({{date | date : 'MMM-yy' }})</span>
+                TOTAL
+              </p>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col sizeXl="1" sizeMd="1" sizeXs="3">
+        <ion-card color="warning">
+          <ion-icon name="qr-code-outline"></ion-icon>
+          <div class="saledata">
+            <ion-label> <span>₹</span> {{ sales.month.upi }}
+              <p>UPI</p>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeXl="1" sizeMd="1" sizeXs="3">
+        <ion-card color="success">
+          <ion-icon name="wallet-outline"></ion-icon>
+          <div class="saledata">
+            <ion-label> <span>₹</span> {{ sales.month.account }}
+              <p>ACCOUNT</p>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeXl="1" sizeMd="1" sizeXs="3">
+        <ion-card color="tertiary">
+
+          <ion-icon name="cash-outline"></ion-icon>
+          <div class="saledata">
+            <ion-label> <span>₹</span> {{ sales.month.cash }}
+              <p>CASH</p>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeXl="1" sizeMd="1" sizeXs="3">
+        <ion-card color="primary">
+          <ion-icon name="card-outline"></ion-icon>
+          <div class="saledata">
+            <ion-label> <span>₹</span> {{ sales.month.card }}
+              <p>CARD</p>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeXl="1" sizeMd="1" sizeXs="3">
+        <ion-card color="secondary">
+          <ion-icon name="today-outline"></ion-icon>
+          <div class="saledata">
+            <ion-label> <span>₹</span> {{ sales.today.total }}
+              <p>TODAY</p>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row class="ion-justify-content-center">
+    @if (DailyChartInput != undefined) {
+    <ion-col sizeXl="5" sizeXs="12">
+      <apx-chart #DailyChart [series]="DailyChartInput.series" [chart]="DailyChartInput.chart"
+        [colors]="DailyChartInput.colors" [dataLabels]="DailyChartInput.dataLabels" [grid]="DailyChartInput.grid"
+        [legend]="DailyChartInput.legend" [plotOptions]="DailyChartInput.plotOptions" [title]="DailyChartInput.title"
+        [xaxis]="DailyChartInput.xaxis">
+      </apx-chart>
+    </ion-col>
+    }
+    <ion-col sizeXl="1"> </ion-col>
+    @if (MonthlyChartInput != undefined) {
+    <ion-col sizeXl="5" sizeXs="12">
+      <apx-chart #MonthlyChart [series]="MonthlyChartInput.series" [chart]="MonthlyChartInput.chart"
+        [colors]="MonthlyChartInput.colors" [dataLabels]="MonthlyChartInput.dataLabels" [grid]="MonthlyChartInput.grid"
+        [legend]="MonthlyChartInput.legend" [title]="MonthlyChartInput.title" [xaxis]="MonthlyChartInput.xaxis">
+      </apx-chart>
+    </ion-col>
+    }
+
+  </ion-row>
+
+  <ion-row class="ion-justify-content-center">
+    <ion-col sizeXs="12" sizeXl="11">
+      <ion-card class="ion-padding ion-margin table-machine">
+        <div class=" table-full">
+          <div class="table-header" *ngIf="sortedData.length > 0">
+            <ion-row class="row-header" style="font-size: 1rem; padding-top: 8px; padding-bottom: 8px;">
+              <ion-col size="2" sizeSm="1" class="ion-text-center" (click)="sortBy('number')">
+                Id
+                <ion-icon name="arrow-down" *ngIf="sortDirection == 1  && sortKey == 'number'"></ion-icon>
+                <ion-icon name="arrow-up" *ngIf="sortDirection == 2  && sortKey == 'number'"></ion-icon>
+              </ion-col>
+              <ion-col size="4" sizeSm="3" class="ion-text-center" (click)="sortBy('name')">
+                Name
+                <ion-icon name="arrow-down" *ngIf="sortDirection == 1  && sortKey == 'name'"></ion-icon>
+                <ion-icon name="arrow-up" *ngIf="sortDirection == 2  && sortKey == 'name'"></ion-icon>
+              </ion-col>
+              <ion-col size="4" sizeSm="3" class="ion-text-center" (click)="sortBy('status')">
+                Status
+                <ion-icon name="arrow-down" *ngIf="sortDirection == 1  && sortKey == 'status'"></ion-icon>
+                <ion-icon name="arrow-up" *ngIf="sortDirection == 2  && sortKey == 'status'"></ion-icon>
+              </ion-col>
+              <ion-col size="2" sizeSm="1" class="ion-text-center" (click)="sortBy('appType')">
+                Type
+                <ion-icon name="arrow-down" *ngIf="sortDirection == 1  && sortKey == 'appType'"></ion-icon>
+                <ion-icon name="arrow-up" *ngIf="sortDirection == 2  && sortKey == 'appType'"></ion-icon>
+              </ion-col>
+
+              <ion-col sizeSm="4" class="ion-hide-sm-down ion-text-center"> Location </ion-col>
+            </ion-row>
+          </div>
+
+          <div class="table-body">
+            <ion-row class="row-data ion-align-items-center" *ngFor="let row of sortedData; let i = index;"
+              (click)="onMachineSelect(row.id)">
+              <ion-col size="2" sizeSm="1" class="ion-text-center"> {{row.number }} </ion-col>
+              <ion-col size="4" sizeSm="3" class="ion-text-center"> {{row.name }} </ion-col>
+              <ion-col size="4" sizeSm="3" class="ion-text-center">
+                <ion-badge [color]="row.status.toLowerCase() == 'online' ? 'success' : 'danger'">
+                  {{row.status}}
+                </ion-badge>
+                @if (row.status.toLowerCase() == 'offline') {
+                <p>
+                  Last seen : {{ row.updatedOn | date : 'MMM d, y, h:mm a'}}
+                </p>
+                }
+              </ion-col>
+              <ion-col size="2" sizeSm="1" class="ion-text-center app-type"> {{ row.appType }}
+              </ion-col>
+              <ion-col sizeSm="4" class="ion-hide-sm-down ion-text-center">
+                {{ row.location }}
+              </ion-col>
+            </ion-row>
+          </div>
+        </div>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

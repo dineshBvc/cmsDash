@@ -1,0 +1,6 @@
+<ion-select [(ngModel)]="selectedId" label="Machine" placeholder="Select" fill="solid">
+  <ion-select-option *ngFor="let machine of machines" [value]="machine.id">
+    {{ machine.name }}
+  </ion-select-option>
+  <ion-select-option value="all">All</ion-select-option>
+</ion-select>

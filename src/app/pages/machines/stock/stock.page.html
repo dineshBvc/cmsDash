@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> {{ machine?.number }}.{{machine?.name}} </ion-title>
+
+    <ion-segment value="cabin1" mode="ios" slot="end" *ngIf="stocks.cabin2.length > 0"
+      (ionChange)="CabinChanged($event)">
+      <ion-segment-button value="cabin1">
+        <ion-label>Cabin 1</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="cabin2">
+        <ion-label>Cabin 2</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content color="medium">
+  <div class="scrollContainer">
+    <div class="gridContainer">
+
+      <app-cabin-stock [cabin]="currentCabin">
+
+      </app-cabin-stock>
+    </div>
+  </div>
+
+
+
+</ion-content>

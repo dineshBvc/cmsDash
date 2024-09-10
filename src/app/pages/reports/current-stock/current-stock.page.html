@@ -1,0 +1,143 @@
+<ion-content color="light">
+  <div class="table-full">
+
+
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col sizeSm="3" sizeLg="2" class="ion-text-center">
+        <h1> Current Stocks </h1>
+      </ion-col>
+
+      <ion-col size=" 12" sizeSm="3" sizeLg="2" class="ion-text-center">
+        <app-machinelist type="vm"></app-machinelist>
+      </ion-col>
+      <ion-col size="12" sizeSm="2" class="ion-text-center ">
+        <ion-button expand="block" (click)="onShowClick()"> SHOW </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center ion-align-items-center" *ngIf="rawData.length > 0">
+      <ion-col size="12" sizeMd="10" sizeLg="8" class="ion-no-padding">
+        <ion-toolbar color="light">
+          <ion-searchbar (ionInput)="SearchData($event)"></ion-searchbar>
+          <ion-buttons slot="end">
+            <ion-button (click)="OnDownload()" class="download-icon-button">
+              <ion-icon slot="icon-only" name="download-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-col>
+
+    </ion-row>
+
+    <div class="table-header" *ngIf="rawData.length > 0">
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" sizeMd="10" sizeLg="8" class="ion-no-padding">
+          <ion-row class="row-header">
+            <ion-col size="6" (click)="sortBy('product')">
+              Product
+              <ion-icon name="arrow-down" *ngIf="sortDirection == 1 && sortKey == 'product'"></ion-icon>
+              <ion-icon name="arrow-up" *ngIf="sortDirection == 2  && sortKey == 'product'"></ion-icon>
+            </ion-col>
+            <ion-col size="2" class="ion-text-center" (click)="sortBy('price')">
+              Price
+              <ion-icon name="arrow-down" *ngIf="sortDirection == 1  && sortKey == 'price'"></ion-icon>
+              <ion-icon name="arrow-up" *ngIf="sortDirection == 2  && sortKey == 'price'"></ion-icon>
+            </ion-col>
+            <ion-col size="2" class="ion-text-center ion-hide-sm-up" (click)="sortBy('capacity')">
+              Cap
+              <ion-icon name="arrow-down" *ngIf="sortDirection == 1  && sortKey == 'capacity'"></ion-icon>
+              <ion-icon name="arrow-up" *ngIf="sortDirection == 2  && sortKey == 'capacity'"></ion-icon>
+            </ion-col>
+            <ion-col size="2" class="ion-text-center ion-hide-sm-down" (click)="sortBy('capacity')">
+              Capacity
+              <ion-icon name="arrow-down" *ngIf="sortDirection == 1  && sortKey == 'capacity'"></ion-icon>
+              <ion-icon name="arrow-up" *ngIf="sortDirection == 2  && sortKey == 'capacity'"></ion-icon>
+            </ion-col>
+            <ion-col size="2" class="ion-text-center" (click)="sortBy('stock')">
+              Stock
+              <ion-icon name="arrow-down" *ngIf="sortDirection == 1  && sortKey == 'stock'"></ion-icon>
+              <ion-icon name="arrow-up" *ngIf="sortDirection == 2  && sortKey == 'stock'"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+
+    </div>
+
+    <div class="table-body">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" sizeMd="10" sizeLg="8" class="ion-no-padding">
+          <ion-row class="row-data" *ngFor="let row of result; let i = index;">
+            <ion-col size="6"> {{ row.product }} </ion-col>
+            <ion-col size="2" class="ion-text-center"> {{ row.price }} </ion-col>
+            <ion-col size="2" class="ion-text-center"> {{ row.capacity }} </ion-col>
+            <ion-col size="2" class="ion-text-center"> {{ row.stock }} </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="table-footer" *ngIf="rawData.length > 0">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" sizeMd="10" sizeLg="8" class="ion-no-padding">
+          <ion-row class="row-total">
+            <ion-col size="3" class="ion-text-center"> Records : {{ result.length }} </ion-col>
+            <ion-col size="6" class="ion-text-end"> TOTAL </ion-col>
+            <ion-col size="3" class="ion-text-center"> Rs. {{ GetTotalByKey('amount') }} </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-no-padding">
+            <ion-col size="12" class="ion-text-center ion-no-padding">
+              {{ page + 1 }} of {{ totalNumberofPages }}
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="2" class="ion-no-padding ion-text-end">
+              <ion-button fill="clear" (click)="goFirst()">
+                <ion-icon name="play-back" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="2" class="ion-no-padding  ion-text-end">
+              <ion-button fill="clear" (click)="prePage()">
+                <ion-icon name="chevron-back" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="2" class="ion-no-padding ">
+              <ion-select interface="popover" [(ngModel)]="recordPerPage" (ionChange)="recordCountChanged()">
+                <ion-select-option [value]="10">10</ion-select-option>
+                <ion-select-option [value]="20">20</ion-select-option>
+                <ion-select-option [value]="50">50</ion-select-option>
+                <ion-select-option [value]="0">ALL</ion-select-option>
+              </ion-select>
+            </ion-col>
+
+            <ion-col size="2" class="ion-no-padding  ">
+              <ion-button fill="clear" (click)="nextPage()">
+                <ion-icon name="chevron-forward" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="2" class="ion-no-padding">
+              <ion-button fill="clear" (click)="goLast()">
+                <ion-icon name="play-forward" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+
+          </ion-row>
+
+        </ion-col>
+      </ion-row>
+    </div>
+
+
+
+
+  </div>
+</ion-content>

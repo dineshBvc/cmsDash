@@ -1,0 +1,153 @@
+.machine {
+    ion-card {
+        background-image: url("/assets/images/bgRed.jpg");
+        background-size: cover;
+
+        ion-item {
+            --background: transparent;
+        }
+        .location {
+            max-width: 300px;
+            text-wrap: wrap;
+        }
+    }
+
+    ion-thumbnail {
+        --border-radius: 3rem;
+        --size: 6rem;
+    }
+    ion-label {
+        p {
+            font-size: 0.9rem;
+            text-wrap: wrap;
+        }
+        ion-badge {
+            margin: 5px;
+            margin-top: 10px;
+            font-size: 0.75rem;
+            font-weight: normal;
+        }
+    }
+    ion-card-content {
+        table {
+            margin: auto;
+            margin-top: 16px;
+            margin-bottom: 16px;
+            width: 80%;
+            max-width: 350px;
+
+            text-align: center;
+            thead {
+                th {
+                    padding: 5px;
+                }
+                th:first-child {
+                    text-align: left;
+                }
+            }
+
+            tbody {
+                td {
+                    padding: 5px;
+                    font-size: 0.8rem;
+                }
+
+                td:first-child {
+                    text-align: left;
+                }
+            }
+
+            .txtUPI {
+                color: var(--ion-color-tertiary);
+            }
+            .txtCash {
+                color: var(--ion-color-success);
+            }
+            .txtAccount {
+                color: var(--ion-color-warning);
+            }
+            .txtCard {
+                color: var(--ion-color-primary);
+            }
+            .txtTotal {
+                color: var(--ion-color-danger);
+                font-weight: bold;
+            }
+        }
+
+        .salesCard {
+            height: 100%;
+            --ion-grid-columns: 10;
+            ion-card {
+                margin: 0px;
+                height: auto;
+                ion-item {
+                    ion-icon {
+                        height: 4rem;
+                        width: 4rem;
+                        margin-left: 1rem;
+                        margin-right: 1rem;
+                    }
+                    ion-text {
+                        width: 6rem;
+                        text-align: center;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    .status {
+        display: flex;
+        align-items: center;
+        span {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            padding-top: 5px;
+        }
+    }
+}
+
+.salesCard {
+    --ion-grid-columns: 6;
+    ion-col {
+        padding: 0px;
+    }
+    ion-card {
+        height: 5rem;
+        ion-icon {
+            margin: 1rem;
+            height: 3rem;
+            width: 3rem;
+        }
+        .saledata {
+            margin-right: 10px;
+            float: right;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        ion-label {
+            font-size: 1.2rem;
+            margin-top: 8px;
+            text-align: end;
+            text-wrap: wrap;
+            p {
+                padding-top: 3px;
+                font-size: 0.7rem;
+                text-align: end;
+                opacity: 0.8;
+                font-weight: 400;
+                color: var(--ion-text-color);
+                text-wrap: wrap;
+            }
+        }
+    }
+}
+
+.saleschart {
+    ion-card {
+        height: 350px;
+    }
+}

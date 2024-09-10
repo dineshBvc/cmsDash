@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { IonApp, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterOutlet, IonButtons, IonHeader, IonMenuButton, IonTitle, IonToolbar, IonThumbnail, IonPopover, IonAvatar, IonAccordionGroup, IonAccordion } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { personOutline, logOutOutline, calendarOutline, todayOutline, qrCodeOutline, walletOutline, cashOutline, cardOutline, homeOutline, fileTrayStackedOutline, radioOutline, bookOutline, searchOutline, arrowDown, arrowUp, playBack, playForward, chevronBack, chevronForward, search, download, downloadOutline, checkmarkOutline } from 'ionicons/icons';
+import { personOutline, logOutOutline, calendarOutline, todayOutline, qrCodeOutline, walletOutline, cashOutline, cardOutline, homeOutline, fileTrayStackedOutline, radioOutline, bookOutline, searchOutline, arrowDown, arrowUp, playBack, playForward, chevronBack, chevronForward, search, download, downloadOutline, checkmarkOutline, personCircleOutline } from 'ionicons/icons';
 import { AuthService } from './services/auth.service';
 import { SignlarService } from './services/signlar.service';
 import { UserService } from './services/user.service';
@@ -38,12 +38,7 @@ export class AppComponent {
       }
     })
 
-    addIcons({
-      personOutline, logOutOutline, calendarOutline,
-      todayOutline, qrCodeOutline, walletOutline, cashOutline,
-      cardOutline, homeOutline, fileTrayStackedOutline, radioOutline, search, downloadOutline,
-      bookOutline, searchOutline, arrowDown, arrowUp, playBack, playForward, chevronBack, chevronForward, checkmarkOutline
-    });
+    addIcons({personOutline,personCircleOutline,logOutOutline});
   }
 
 
@@ -54,4 +49,13 @@ export class AppComponent {
   Logout() {
     this.authService.logout();
   }
+
+  Register() {
+     this.router.navigate(['/register']);
+  }
+  
+
+
+
+
 }

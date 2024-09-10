@@ -129,5 +129,13 @@ export const routes: Routes = [
   {
     path: 'reports/cash-refund-request',
     loadComponent: () => import('./pages/reports/cash-refund-request/cash-refund-request.page').then( m => m.CashRefundRequestPage)
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.page').then(m => m.RegisterPage),
+    canActivate: [AuthGuard] // or remove `canActivate` if the registration is open to unauthenticated users
   }
+  
+
+
 ];

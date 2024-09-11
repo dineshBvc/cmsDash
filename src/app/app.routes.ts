@@ -134,8 +134,8 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./pages/register/register.page').then(m => m.RegisterPage),
     canActivate: [AuthGuard] // or remove `canActivate` if the registration is open to unauthenticated users
-  }
-  
+  },
 
-
+ 
+ 
 ];

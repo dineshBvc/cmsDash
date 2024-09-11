@@ -10,11 +10,21 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage {
+  register = {
+    email: '',
+    password: '',
+    vendorId: '',
+    role: ''
+  };
 
-  constructor() { }
-
-  ngOnInit() {
+  onSubmit() {
+    if (this.register.email && this.register.password && this.register.vendorId && this.register.role) {
+      console.log('Registration details:', this.register);
+      // Handle registration logic here, such as sending data to a server
+      alert('Registration successful');
+    } else {
+      alert('Please fill out the form');
+    }
   }
-
 }

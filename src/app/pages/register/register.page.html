@@ -1,5 +1,11 @@
 <ion-content>
 
+  <ion-row class="ion-margin-top">
+    <ion-col size="12" class="ion-text-center">
+      <ion-text class="title"> Register User </ion-text>
+    </ion-col>
+  </ion-row>
+
   <ion-row class="ion-justify-content-center">
     <ion-col sizeXs="12" sizeLg="5">
       <ion-card>
@@ -13,6 +19,13 @@
               <ion-col size="12">
                 <ion-input label="Email" type="text" label-placement="floating" fill="outline" placeholder="Enter Email"
                   formControlName="email" [errorText]="getErrorText('email')"></ion-input>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-margin-top">
+              <ion-col size="12">
+                <ion-input label="Username" type="text" label-placement="floating" fill="outline" placeholder="Enter Username"
+                  formControlName="username" [errorText]="getErrorText('username')"></ion-input>
               </ion-col>
             </ion-row>
 

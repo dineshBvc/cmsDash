@@ -1,13 +1,55 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-row class="ion-justify-content-center">
+    <ion-col sizeXs="12" sizeLg="5">
+      <ion-card>
+        <ion-card-header class="contentHeader">
+          <ion-card-title>Create New User</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content class="contentHeight">
+          <form [formGroup]="registerForm" (ngSubmit)="Register()">
+            <ion-row>
+              <ion-col size="12">
+                <ion-input label="Email" type="text" label-placement="floating" fill="outline" placeholder="Enter Email"
+                  formControlName="email" [errorText]="getErrorText('email')"></ion-input>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-margin-top">
+              <ion-col size="12">
+                <ion-input label="Password" type="password" label-placement="floating" fill="outline" clear-on-edit="false"
+                  placeholder="Enter Password" formControlName="password" [errorText]="getErrorText('password')"></ion-input>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-margin-top">
+              <ion-col size="12">
+                <ion-input label="Vendor ID" type="number" label-placement="floating" fill="outline" placeholder="Enter Vendor ID"
+                  formControlName="vendorId" [errorText]="getErrorText('vendorId')"></ion-input>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-margin-top">
+              <ion-col size="12">
+                <ion-select label="Role" label-placement="floating" fill="outline" formControlName="role">
+                  <ion-select-option value="User">User</ion-select-option>
+                  <ion-select-option value="Admin">Admin</ion-select-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-margin-top">
+              <ion-col size="12">
+                <ion-button expand="full" type="submit">
+                  Register
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
 </ion-content>

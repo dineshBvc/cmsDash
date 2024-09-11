@@ -4,12 +4,12 @@ import {
 } from "./chunk-BZSU2J2L.js";
 import "./chunk-TEJ4ORUZ.js";
 import {
-  componentOnReady
-} from "./chunk-5YZ4KUQP.js";
-import {
   readTask,
   writeTask
 } from "./chunk-5HV6Q5AT.js";
+import {
+  componentOnReady
+} from "./chunk-5YZ4KUQP.js";
 import {
   __async
 } from "./chunk-NQPIFD3Z.js";
@@ -48,4 +48,4 @@ export {
    * (C) Ionic http://ionicframework.com - MIT License
    *)
 */
-//# sourceMappingURL=status-tap-UB3YYBTW.js.map
+//# sourceMappingURL=status-tap-VZ2UHKJT.js.map

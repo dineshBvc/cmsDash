@@ -5,20 +5,10 @@ import {
   LIFECYCLE_WILL_LEAVE,
   LIFECYCLE_WILL_UNLOAD,
   createAnimation
-} from "./chunk-UMC27BCI.js";
+} from "./chunk-ODP2HAQV.js";
 import {
   printIonWarning
 } from "./chunk-TEJ4ORUZ.js";
-import {
-  addEventListener,
-  componentOnReady,
-  focusVisibleElement,
-  getElementRoot,
-  removeEventListener
-} from "./chunk-5YZ4KUQP.js";
-import {
-  BACKDROP_NO_SCROLL
-} from "./chunk-Z3CCRJSG.js";
 import {
   MENU_BACK_BUTTON_PRIORITY,
   OVERLAY_BACK_BUTTON_PRIORITY,
@@ -30,6 +20,16 @@ import {
   getPlatforms,
   isPlatform
 } from "./chunk-G3MRK4M2.js";
+import {
+  BACKDROP_NO_SCROLL
+} from "./chunk-Z3CCRJSG.js";
+import {
+  addEventListener,
+  componentOnReady,
+  focusVisibleElement,
+  getElementRoot,
+  removeEventListener
+} from "./chunk-5YZ4KUQP.js";
 import {
   doc
 } from "./chunk-R3LVCYXH.js";
@@ -3858,4 +3858,4 @@ export {
    * (C) Ionic http://ionicframework.com - MIT License
    *)
 */
-//# sourceMappingURL=chunk-ZOIOKS7E.js.map
+//# sourceMappingURL=chunk-U24GFY4E.js.map
